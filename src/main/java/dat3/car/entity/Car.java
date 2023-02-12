@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Getter
 @Setter
@@ -25,15 +26,23 @@ public class Car {
   private double pricePrDay;
   @Column(name = "max_discount")
   private int bestDiscount;
-  @Temporal(TemporalType.TIMESTAMP)
-  private LocalDateTime created = LocalDateTime.now();
-  @Temporal(TemporalType.TIMESTAMP)
-  private LocalDateTime lastEdited = LocalDateTime.now();
 
-  public Car(String brand, String model, double pricePrDay, int bestDiscount) {
+  @CreationTimestamp
+  LocalDateTime created;
+
+  @UpdateTimestamp
+  LocalDateTime lastEdited;
+
+  /*
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime created = LocalDateTime.now();
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime lastEdited = LocalDateTime.now();
+  */
+
+  public Car(String brand, String model, double pricePrDay) {
     this.brand = brand;
     this.model = model;
     this.pricePrDay = pricePrDay;
-    this.bestDiscount = bestDiscount;
   }
 }

@@ -23,8 +23,7 @@ public class DeveloperData implements ApplicationRunner {
 
   private final String passwordUsedByAll = "test12";
 
-  @Override
-  public void run(ApplicationArguments args) throws Exception {
+  public void makeTestData(){
     Member m1 = new Member("member1", passwordUsedByAll, "memb1@a.dk", "Kurt", "Wonnegut", "Lyngbyvej 2", "Lyngby", "2800");
     Member m2 = new Member("member2", passwordUsedByAll, "aaa@dd.dk", "Hanne", "Wonnegut", "Lyngbyvej 2", "Lyngby", "2800");
     m1.setFavoriteCarColors(new ArrayList<String>(Arrays.asList("Blue","Red")));
@@ -34,10 +33,14 @@ public class DeveloperData implements ApplicationRunner {
     m1.setPhones(map1);
     memberRepository.save(m1);
     memberRepository.save(m2);
-    Car c1 = new Car("Opel", "Fenix", 500, 20);
-    Car c2 = new Car("Critroen", "Roamer", 400, 25);
+    Car c1 = new Car("Opel", "Fenix", 500);
+    Car c2 = new Car("Critroen", "Roamer", 400);
     carRepository.save(c1);
     carRepository.save(c2);
+  }
+  @Override
+  public void run(ApplicationArguments args) throws Exception {
+  makeTestData();
   }
 
 }
