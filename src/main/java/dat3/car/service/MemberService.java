@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,5 +45,6 @@ public class MemberService {
     MemberResponse memberResponse = new MemberResponse(member,true);
     return memberResponse;
   }
+
 
 }

@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -33,6 +35,9 @@ public class Car {
   @UpdateTimestamp
   LocalDateTime lastEdited;
 
+  @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+  private List<CarReservation> reservations = new ArrayList<>();
+
   /*
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime created = LocalDateTime.now();
@@ -45,4 +50,9 @@ public class Car {
     this.model = model;
     this.pricePrDay = pricePrDay;
   }
+
+  public void addReservation(CarReservation reservation){
+    reservations.add(reservation);
+  }
+
 }

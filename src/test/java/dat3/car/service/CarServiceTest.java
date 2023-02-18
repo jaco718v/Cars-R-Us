@@ -29,8 +29,8 @@ class CarServiceTest {
   @BeforeEach
   void setUp() {
     if(!dataIsReady){
-      carRepository.save(new Car("Opel", "Fenix", 500));
-      carRepository.save(new Car("Citroen", "Roamer", 400));
+      carRepository.saveAndFlush(new Car("Opel", "Fenix", 500));
+      carRepository.saveAndFlush(new Car("Citroen", "Roamer", 400));
       dataIsReady = true;
       carService = new CarService(carRepository);
     }

@@ -2,6 +2,7 @@ package dat3.car.api;
 
 import dat3.car.dto.MemberRequest;
 import dat3.car.dto.MemberResponse;
+import dat3.car.dto.ReservationRequest;
 import dat3.car.entity.Member;
 import dat3.car.repository.MemberRepository;
 import dat3.car.service.MemberService;
@@ -52,6 +53,7 @@ class MemberController {
   //ADMIN
   @DeleteMapping("/{username}")
   void deleteMemberByUsername(@PathVariable String username) {}
+
 
 }
 

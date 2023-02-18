@@ -8,11 +8,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class MemberResponse {
   String username; //Remember this is the primary key
   String email;
@@ -21,6 +23,8 @@ public class MemberResponse {
   String street;
   String city;
   String zip;
+
+  List<ReservationResponse> reservations = new ArrayList<>();
   @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
   LocalDateTime created;
 
@@ -38,6 +42,7 @@ public class MemberResponse {
     this.lastName = m.getLastName();
     this.city = m.getCity();
     this.zip = m.getZip();
+    this.reservations = m.getReservations().stream().map(r-> new ReservationResponse(r,includeAll)).toList();
     if(includeAll){
       this.created = m.getCreated();
       this.edited = m.getLastEdited();

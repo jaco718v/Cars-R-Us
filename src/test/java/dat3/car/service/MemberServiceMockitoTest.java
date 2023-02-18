@@ -23,6 +23,7 @@ class MemberServiceMockitoTest {
   @Mock
   MemberRepository memberRepository;
 
+
   MemberService memberService;
 
   @BeforeEach

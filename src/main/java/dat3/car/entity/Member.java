@@ -1,5 +1,6 @@
 package dat3.car.entity;
 
+import dat3.security.entity.UserWithRoles;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,11 +18,9 @@ import java.util.Map;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Member {
-  @Id
-  private String username;
-  private String email;
-  private String password;
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "USER_TYPE")
+public class Member extends UserWithRoles {
   private String firstName;
   private String lastName;
   private String street;
@@ -29,6 +28,8 @@ public class Member {
   private String zip;
   private boolean approved;
   private int ranking;
+  @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+  private List<CarReservation> reservations = new ArrayList<>();
 
   @CreationTimestamp
   LocalDateTime created;
@@ -48,14 +49,16 @@ public class Member {
 
   public Member(String user, String password, String email,
                 String firstName, String lastName, String street, String city, String zip) {
-    this.username = user;
-    this.password= password;
-    this.email = email;
+    super(user, password, email);
     this.firstName = firstName;
     this.lastName = lastName;
     this.street = street;
     this.city = city;
     this.zip = zip;
+  }
+
+  public void addReservation(CarReservation reservation){
+    reservations.add(reservation);
   }
 
 }
