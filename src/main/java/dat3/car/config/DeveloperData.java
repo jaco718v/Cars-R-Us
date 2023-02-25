@@ -72,7 +72,11 @@ public class DeveloperData implements ApplicationRunner {
     //makeTestData();
     Member m1 = new Member("member1", passwordUsedByAll, "memb1@a.dk", "Kurt", "Wonnegut", "Lyngbyvej 2", "Lyngby", "2800");
     Car c1 = new Car("Opel", "Fenix", 500);
+    Car c2 = new Car("Citroen", "Model1", 600);
+    Car c3 = new Car("Volkswagen", "Model2", 400);
     carRepository.save(c1);
+    carRepository.save(c2);
+    carRepository.save(c3);
     memberRepository.save(m1);
     setupUserWithRoleUsers();
 
