@@ -28,4 +28,10 @@ public class CarService {
     List<CarResponse> carResponses = cars.stream().map(c -> new CarResponse(c,includeAll)).toList();
     return carResponses;
   }
+
+  public CarResponse getCarById(int id){
+    Car car = carRepository.findCarById(id);
+    CarResponse carResponse = new CarResponse(car,false);
+    return carResponse;
+  }
 }
