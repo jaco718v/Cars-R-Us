@@ -12,7 +12,7 @@ import lombok.Setter;
 public class CarRequest {
   private String brand;
   private String model;
-  private double pricePrDay;
+  private Double pricePrDay;
 
   public static Car getCarEntity(CarRequest c){
     return new Car(c.getBrand(),c.getModel(),c.getPricePrDay());

@@ -33,6 +33,44 @@ public class MemberService {
     return new MemberResponse(newMember, false);
   }
 
+  public MemberResponse updateMember(MemberRequest memberRequest, String username){
+    if(null != memberRequest.getUsername() && memberRepository.existsById(memberRequest.getUsername())){
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Member with this ID already exist");
+    }
+    if(null != memberRequest.getUsername() && memberRepository.existsByEmail(memberRequest.getEmail())){
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Member with this Email already exist");
+    }
+    Member member = memberRepository.findByUsername(username);
+
+    //if(null != memberRequest.getUsername()){
+      //member.setUsername(memberRequest.getUsername());
+    //}
+    if(null != memberRequest.getPassword()){
+      member.setPassword(memberRequest.getPassword());
+    }
+    if(null != memberRequest.getEmail()){
+      member.setEmail(memberRequest.getEmail());
+    }
+    if(null != memberRequest.getStreet()){
+      member.setStreet(memberRequest.getStreet());
+    }
+    if(null != memberRequest.getCity()){
+      member.setCity(memberRequest.getCity());
+    }
+    if(null != memberRequest.getZip()){
+      member.setZip(memberRequest.getZip());
+    }
+    memberRepository.save(member);
+
+    return new MemberResponse(member, false);
+  }
+
+  public void deleteMember(String username){
+    if(memberRepository.existsById(username)){
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"No member with such ID exists");
+    }
+    memberRepository.deleteById(username);
+  }
 
   public List<MemberResponse> getMembers(boolean includeAll) {
     List<Member> members = memberRepository.findAll();
