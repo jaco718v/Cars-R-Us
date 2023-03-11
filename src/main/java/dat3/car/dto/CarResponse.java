@@ -34,11 +34,11 @@ public class CarResponse {
 
 
   public CarResponse(Car c, Boolean includeAll) {
+    this.id = c.getId();
     this.brand = c.getBrand();
     this.model = c.getModel();
     this.pricePrDay = c.getPricePrDay();
     if(includeAll){
-      this.id = c.getId();
       this.bestDiscount = c.getBestDiscount();
       this.created = c.getCreated();
       this.edited = c.getLastEdited();

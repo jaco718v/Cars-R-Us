@@ -27,7 +27,7 @@ class MemberController {
   //ADMIN ONLY
   @GetMapping
   List<MemberResponse> getMembers(){
-    return memberService.getMembers(false);}
+    return memberService.getMembers(true);}
 
   //ADMIN ONLY
   @GetMapping(path = "/{username}")

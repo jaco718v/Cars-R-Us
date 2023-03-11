@@ -30,7 +30,7 @@ public class MemberService {
     Member newMember = MemberRequest.getMemberEntity(memberRequest);
     newMember = memberRepository.save(newMember);
 
-    return new MemberResponse(newMember, false);
+    return new MemberResponse(newMember, true);
   }
 
   public MemberResponse updateMember(MemberRequest memberRequest, String username){

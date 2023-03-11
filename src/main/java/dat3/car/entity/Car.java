@@ -45,10 +45,11 @@ public class Car {
     private LocalDateTime lastEdited = LocalDateTime.now();
   */
 
-  public Car(String brand, String model, double pricePrDay) {
+  public Car(String brand, String model, double pricePrDay, int bestDiscount) {
     this.brand = brand;
     this.model = model;
     this.pricePrDay = pricePrDay;
+    this.bestDiscount = bestDiscount;
   }
 
   public void addReservation(CarReservation reservation){

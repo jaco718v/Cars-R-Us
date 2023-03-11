@@ -23,12 +23,12 @@ public class CarController {
   //ANONYMOUS
   @GetMapping
   public List<CarResponse> getCars(){
-    return carService.getCars(false);
+    return carService.getCars(true);
   }
 
   @GetMapping("/{id}")
   public CarResponse getCar(@PathVariable int id){
-    return carService.getCarById(id);
+    return carService.getCarById(id, true);
   }
 
   //ADMIN

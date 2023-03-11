@@ -23,7 +23,7 @@ public class CarService {
     Car newCar = CarRequest.getCarEntity(carRequest);
     newCar = carRepository.save(newCar);
 
-    return new CarResponse(newCar, false);
+    return new CarResponse(newCar, true);
   }
 
   public CarResponse updateCar(CarRequest carRequest, int id){
@@ -31,6 +31,10 @@ public class CarService {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"No car with such ID exists");
     }
       Car updatingCar = carRepository.findCarById(id);
+
+      /*if(null != carRequest.getId()){
+        updatingCar.setId(carRequest.getId());
+      }*/
       if (null != carRequest.getBrand()) {
         updatingCar.setBrand(carRequest.getBrand());
       }
@@ -58,9 +62,9 @@ public class CarService {
     return carResponses;
   }
 
-  public CarResponse getCarById(int id){
+  public CarResponse getCarById(int id, boolean includeAll){
     Car car = carRepository.findCarById(id);
-    CarResponse carResponse = new CarResponse(car,false);
+    CarResponse carResponse = new CarResponse(car,includeAll);
     return carResponse;
   }
 }

@@ -41,8 +41,8 @@ public class DeveloperData implements ApplicationRunner {
     map1.put("home","11111111"); map1.put("mobile","22222222");
     m1.setPhones(map1);
 
-    Car c1 = new Car("Opel", "Fenix", 500);
-    Car c2 = new Car("Critroen", "Roamer", 400);
+    Car c1 = new Car("Opel", "Fenix", 500, 20);
+    Car c2 = new Car("Critroen", "Roamer", 400, 5);
 
     carRepository.save(c1);
     carRepository.save(c2);
@@ -72,13 +72,14 @@ public class DeveloperData implements ApplicationRunner {
     //makeTestData();
     Member m1 = new Member("member1", passwordUsedByAll, "memb1@a.dk", "Kurt", "Wonnegut", "Lyngbyvej 2", "Lyngby", "2800");
     Member m2 = new Member("member2", passwordUsedByAll, "aaa@dd.dk", "Hanne", "Wonnegut", "Lyngbyvej 2", "Lyngby", "2800");
-    Car c1 = new Car("Opel", "Fenix", 500);
-    Car c2 = new Car("Citroen", "Model1", 600);
-    Car c3 = new Car("Volkswagen", "Model2", 400);
+    Car c1 = new Car("Opel", "Fenix", 500, 15);
+    Car c2 = new Car("Citroen", "Model1", 600, 10);
+    Car c3 = new Car("Volkswagen", "Model2", 400, 5);
     carRepository.save(c1);
     carRepository.save(c2);
     carRepository.save(c3);
     memberRepository.save(m1);
+    memberRepository.save(m2);
     setupUserWithRoleUsers();
 
 
