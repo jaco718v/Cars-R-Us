@@ -35,7 +35,7 @@ class ReservationServiceTest {
   @BeforeEach
   void setUp() {
     if (!dataIsReady) {  //Explain this
-      carRepository.save(new Car("Opel", "Fenix", 500));
+      carRepository.save(new Car("Opel", "Fenix", 500,5));
       dataIsReady = true;
       reservationService = new ReservationService(reservationRepository, memberRepository, carRepository);
     }
