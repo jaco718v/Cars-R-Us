@@ -32,8 +32,8 @@ class CarServiceMockitoTest {
 
   @Test
   void getCars() {
-    Car c1 = new Car("Opel", "Fenix", 500);
-    Car c2 = new Car("Citroen", "Roamer", 400);
+    Car c1 = new Car("Opel", "Fenix", 500,5);
+    Car c2 = new Car("Citroen", "Roamer", 400,5);
     c1.setCreated(LocalDateTime.now());
     c2.setCreated(LocalDateTime.now());
     Mockito.when(carRepository.findAll()).thenReturn(List.of(c1,c2));
@@ -44,7 +44,7 @@ class CarServiceMockitoTest {
 
   @Test
   void addCar() {
-    Car c1 = new Car("Opel", "Fenix", 500);
+    Car c1 = new Car("Opel", "Fenix", 500,5);
     c1.setId(1);
     c1.setCreated(LocalDateTime.now());
     Mockito.when(carRepository.save(any(Car.class))).thenReturn(c1);

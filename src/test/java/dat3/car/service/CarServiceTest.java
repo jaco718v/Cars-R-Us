@@ -29,8 +29,8 @@ class CarServiceTest {
   @BeforeEach
   void setUp() {
     if(!dataIsReady){
-      carRepository.saveAndFlush(new Car("Opel", "Fenix", 500));
-      carRepository.saveAndFlush(new Car("Citroen", "Roamer", 400));
+      carRepository.saveAndFlush(new Car("Opel", "Fenix", 500,5));
+      carRepository.saveAndFlush(new Car("Citroen", "Roamer", 400,5));
       dataIsReady = true;
       carService = new CarService(carRepository);
     }
@@ -38,7 +38,7 @@ class CarServiceTest {
 
   @Test
   void addCar() {
-    Car newCar = new Car("Volkswagen", "Up", 700);
+    Car newCar = new Car("Volkswagen", "Up", 700,5);
     CarRequest newCarRequest = new CarRequest(newCar);
     carService.addCar(newCarRequest);
     List<CarResponse> cars = carService.getCars(true);
