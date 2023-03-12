@@ -14,7 +14,7 @@ public class ReservationController {
   public ReservationController(ReservationService reservationService){
     this.reservationService=reservationService;
   }
-  @PostMapping("/{username}/reservation")
+  @PostMapping("/{username}")
   void reserveCarForMember(@PathVariable String username, @RequestBody ReservationRequest body){
     reservationService.reserveCar(body,username);
   }
