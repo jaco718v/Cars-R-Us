@@ -9,6 +9,7 @@ import dat3.car.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,11 +26,13 @@ class MemberController {
   }
 
   //ADMIN ONLY
+  @PreAuthorize("hasAuthority('ADMIN')")
   @GetMapping
   List<MemberResponse> getMembers(){
     return memberService.getMembers(true);}
 
   //ADMIN ONLY
+  @PreAuthorize("hasAuthority('ADMIN')")
   @GetMapping(path = "/{username}")
   MemberResponse getMemberById(@PathVariable String username) throws Exception {
     return null;}
@@ -47,11 +50,13 @@ class MemberController {
     return memberService.updateMember(body,username);
   }
 
+
+  @PreAuthorize("hasAuthority('ADMIN')")
   //ADMIN ONLY
   @PatchMapping("/ranking/{username}/{value}")
   void setRankingForUser(@PathVariable String username, @PathVariable int value) {}
 
-  //ADMIN
+  @PreAuthorize("hasAuthority('ADMIN')")
   @DeleteMapping("/{username}")
   void deleteMemberByUsername(@PathVariable String username) {
     memberService.deleteMember(username);

@@ -7,5 +7,7 @@ import java.util.ArrayList;
 
 public interface ReservationRepository extends JpaRepository<CarReservation,Integer> {
   ArrayList<CarReservation> findAllById(Integer carId);
+  ArrayList<CarReservation> findAllByMemberUsername(String username);
+
 
 }

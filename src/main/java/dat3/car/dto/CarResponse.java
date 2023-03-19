@@ -22,7 +22,7 @@ public class CarResponse {
 
   private String model;
 
-  private double pricePrDay;
+  private Double pricePrDay;
 
   private Integer bestDiscount;
 

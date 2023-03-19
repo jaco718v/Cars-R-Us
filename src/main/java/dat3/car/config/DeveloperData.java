@@ -72,6 +72,9 @@ public class DeveloperData implements ApplicationRunner {
     //makeTestData();
     Member m1 = new Member("member1", passwordUsedByAll, "memb1@a.dk", "Kurt", "Wonnegut", "Lyngbyvej 2", "Lyngby", "2800");
     Member m2 = new Member("member2", passwordUsedByAll, "aaa@dd.dk", "Hanne", "Wonnegut", "Lyngbyvej 2", "Lyngby", "2800");
+    m1.addRole(Role.USER);
+    m1.addRole(Role.ADMIN);
+    m2.addRole(Role.USER);
     Car c1 = new Car("Opel", "Fenix", 500, 15);
     Car c2 = new Car("Citroen", "Model1", 600, 10);
     Car c3 = new Car("Volkswagen", "Model2", 400, 5);

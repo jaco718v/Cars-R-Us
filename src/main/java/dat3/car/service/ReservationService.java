@@ -1,6 +1,7 @@
 package dat3.car.service;
 
 import dat3.car.dto.ReservationRequest;
+import dat3.car.dto.ReservationResponse;
 import dat3.car.entity.Car;
 import dat3.car.entity.CarReservation;
 import dat3.car.entity.Member;
@@ -29,7 +30,7 @@ public class ReservationService {
     this.carRepository=carRepository;
   }
 
-  public void reserveCar(ReservationRequest rr, String username){
+  public ReservationResponse reserveCar(ReservationRequest rr, String username){
     if(rr.getRentalDate().isBefore(LocalDate.now())){
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Invalid date, set in past");
     }
@@ -44,8 +45,14 @@ public class ReservationService {
     CarReservation newReservation = ReservationRequest.getReservationEntity(rr,member,car);
     member.addReservation(newReservation);
     memberRepository.save(member);
+    return new ReservationResponse(newReservation,true);
   }
 
+  public List<ReservationResponse> getAllUserReservations(String username){
+    List<CarReservation> carReservations = reservationRepository.findAllByMemberUsername(username);
+    List<ReservationResponse> reservationResponses = carReservations.stream().map(c -> new ReservationResponse(c,true)).toList();
+    return reservationResponses;
+  }
 
   public boolean checkScheduleOverlap(ReservationRequest cr){
     List<CarReservation> carSchedule = reservationRepository.findAllById(cr.getCarId());
